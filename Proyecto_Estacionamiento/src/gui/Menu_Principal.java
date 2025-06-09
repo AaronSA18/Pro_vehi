@@ -93,18 +93,19 @@ public class Menu_Principal extends JFrame implements ActionListener {
 				btnNewButton_2.setBounds(0, 143, 204, 23);
 				panel_1.add(btnNewButton_2);
 			}
+			 regis = new Registro();
+		     regis.setBounds(204, 0, 444, 316);
+		        
+		     lis = new lista(); 
+		     lis.setBounds(204, 0, 473, 373);
+		     
+		     salida = new Salida();
+		     salida.setBounds(204, 0, 473, 373);
+		     
+		     nuevoPanel(regis);
 		}
 		
-		 regis = new Registro();
-	     regis.setBounds(204, 0, 473, 373);
-	        
-	     lis = new lista(); 
-	     lis.setBounds(204, 0, 473, 373);
-	     
-	     salida = new Salida();
-	     salida.setBounds(204, 0, 473, 373);
-	     vehicleArray.initializeSampleData(); // agrego datos
-	     nuevoPanel(regis);
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -120,8 +121,18 @@ public class Menu_Principal extends JFrame implements ActionListener {
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
 		
-		 regis.setBounds(204, 0, 473, 373); 
+		 //regis.setBounds(204, 0, 473, 373); 
 		nuevoPanel(regis);
+	}
+	
+	protected void do_btnNewButton_1_actionPerformed(ActionEvent e) {
+		
+		//lis.setBounds(204, 0, 473, 373);  
+		nuevoPanel(lis);
+	}
+	protected void do_btnNewButton_2_actionPerformed(ActionEvent e) {
+		//salida.setBounds(204, 0, 473, 373);  
+		nuevoPanel(salida);
 	}
 	private void nuevoPanel(JPanel nuevoPanel) {
         if (panel != null) {
@@ -132,13 +143,4 @@ public class Menu_Principal extends JFrame implements ActionListener {
         contentPane.revalidate();
         contentPane.repaint();
     }
-	protected void do_btnNewButton_1_actionPerformed(ActionEvent e) {
-		
-		lis.setBounds(204, 0, 473, 373);  
-		nuevoPanel(lis);
-	}
-	protected void do_btnNewButton_2_actionPerformed(ActionEvent e) {
-		salida.setBounds(204, 0, 473, 373);  
-		nuevoPanel(salida);
-	}
 }

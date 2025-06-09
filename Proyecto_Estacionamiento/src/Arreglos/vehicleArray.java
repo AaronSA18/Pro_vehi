@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import clases.Factura;
 import clases.cliente;
 import clases.vehiculo;
+import gui.lista;
 
 
 public class vehicleArray {
-private static vehicleArray instancia;
-    
-    // 2. Lista de vehículos
+	private static final vehicleArray instancia = new vehicleArray();
+
     private ArrayList<vehiculo> vehicle;
     
     // 3. Constructor privado para evitar instanciación externa
@@ -20,15 +20,13 @@ private static vehicleArray instancia;
     
     // 4. Método estático para obtener la instancia única
     
-    public static synchronized vehicleArray getInstancia() {
-        if (instancia == null) {
-            instancia = new vehicleArray();
-        }
+    public static  vehicleArray getInstancia() {     
         return instancia;
     }
 	
 	public void Add(vehiculo v) {
 		vehicle.add(v);
+		notificarActualizacion();
 	}
 	
 	public vehiculo Get(int v) {
@@ -49,6 +47,7 @@ private static vehicleArray instancia;
 	}
 	public void Delete(vehiculo x) {
 		vehicle.remove(x);
+		notificarActualizacion();
 	}
 	public static void initializeSampleData() {
 		vehicleArray lista = vehicleArray.getInstancia();// datos predeterminados
@@ -61,4 +60,23 @@ private static vehicleArray instancia;
         lista.Add(new vehiculo("ABC123", "Toyota", "Ligero", cliente1, 1,clienteA));
         lista.Add(new vehiculo("XYZ789", "Nissan", "Ligero", cliente2, 2,clienteB));
     }
+	
+	//Actualizacion Panel Lista
+	private lista panelLista;
+	
+	public void registrarPanelLista(lista panel) {
+        this.panelLista = panel;
+    }
+
+    private void notificarActualizacion() {
+        if (panelLista != null) {
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                panelLista.mostrarDatos();
+            });
+           
+        }
+    }
+    
+ 
+    
 }

@@ -41,7 +41,7 @@ public class Registro extends JPanel implements ActionListener {
 	private JLabel lblNewLabel_2;
 	
 	vehicleArray listaVehiculo = vehicleArray.getInstancia();
-	private lista lista;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -210,6 +210,7 @@ public class Registro extends JPanel implements ActionListener {
 	            v = new vehiculo(Placa(), Marca(), tipoVehiculo(), a, k,b);
 	            
 	            listaVehiculo.Add(v);
+	           // vehicleArray.getInstancia().Add(v); ///
 	           
 	                
 	                // Mensaje de confirmación
