@@ -41,10 +41,6 @@ public class vehiculo {
     public String getPlacVehiculo() {
         return placVehiculo;
     }
-
-    public void registrarSalida() {
-        this.fechaHoraSalida = LocalDateTime.now();
-    }
     
     public Factura getFac() {
 		return fac;
@@ -90,13 +86,11 @@ public class vehiculo {
 		this.cli = cli;
 	}
 	
-	//
+	
 	public LocalDateTime getFechaHoraEntrada() {
 		return fechaHoraEntrada;
 	}
 
-	
-	//
 	public void setFechaHoraEntrada(LocalDateTime fechaHoraEntrada) {
 		this.fechaHoraEntrada = fechaHoraEntrada;
 	}
@@ -104,8 +98,23 @@ public class vehiculo {
 	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
+	
 
+	
+	
+	public LocalDateTime getFechaHoraSalida() {
+		return fechaHoraSalida;
+	}
+
+	public void registrarSalida() {
+        this.fechaHoraSalida = LocalDateTime.now();
+    }
 	//method
+	public String VerificarSalida() {
+		if(getFechaHoraSalida()==null)return "Estacionado";
+		else return "Salio";
+	}
+	
 	public long calcularTiempoEstacionamiento() {
         if (fechaHoraEntrada == null) return 0;
         LocalDateTime hasta = fechaHoraSalida != null ? fechaHoraSalida : LocalDateTime.now();

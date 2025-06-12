@@ -90,7 +90,7 @@ public class Salida extends JPanel implements ActionListener {
 			 a.registrarSalida(); // establezco el momento de Salido
 			 //a.setFechaHoraSalida(LocalDateTime.of(2025, 6, 5, 20, 15)); //cambio la hora de salida;(AÑO, MES, DIA, 8:, 7)
 			 //simular el tiempo adeleantado
-			 txtS.setText("============Comprobante=========\n");
+			 txtS.setText("================Comprobante============\n");
 			 txtS.append(a.Salida());
 			 listavehiculo.Delete(a);
 			

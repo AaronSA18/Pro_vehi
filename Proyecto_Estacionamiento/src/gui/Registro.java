@@ -264,6 +264,7 @@ public class Registro extends JPanel implements ActionListener {
 	    }
 		
 	}
+	//private lista panelLista;
 	protected void do_btnModificar_actionPerformed(ActionEvent e) {
 		try {
 		if(MensajesVacios()==false)return;
@@ -290,7 +291,7 @@ public class Registro extends JPanel implements ActionListener {
 	                );
 	             
 	                // Limpiar campos después del registro
-	                
+	                listaVehiculo.Notificar();
 	                limpiarCampos();
 	        }else {
 	        	JOptionPane.showMessageDialog(

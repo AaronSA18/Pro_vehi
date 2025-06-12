@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -56,7 +57,7 @@ public class Login extends JFrame implements ActionListener {
 		setBounds(100, 100, 684, 405);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		{
@@ -67,7 +68,7 @@ public class Login extends JFrame implements ActionListener {
 			contentPane.add(contentPane_1);
 			{
 				panel = new JPanel();
-				panel.setBackground(new Color(255, 128, 128));
+				panel.setBackground(SystemColor.activeCaption);
 				panel.setBounds(0, 0, 347, 373);
 				contentPane_1.add(panel);
 			}
@@ -97,8 +98,9 @@ public class Login extends JFrame implements ActionListener {
 			}
 			{
 				btnNewButton = new JButton("Ingresar");
+				btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 				btnNewButton.addActionListener(this);
-				btnNewButton.setBounds(561, 327, 89, 23);
+				btnNewButton.setBounds(546, 323, 104, 27);
 				contentPane_1.add(btnNewButton);
 			}
 			{

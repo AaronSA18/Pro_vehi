@@ -57,7 +57,7 @@ public class lista extends JPanel implements ActionListener {
 			
 			scrollPane.setBounds(44, 103, 655, 318);
 			add(scrollPane);
-			mostrarDatos();						
+			//mostrarDatos();						
 		}
 		{
 			txtPlaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -73,7 +73,7 @@ public class lista extends JPanel implements ActionListener {
 			add(lblNewLabel);
 		}
 		 vehicleArray.initializeSampleData();
-		 mostrarDatos();
+		 //mostrarDatos();
 		
 	}
 	public void actionPerformed(ActionEvent e) {

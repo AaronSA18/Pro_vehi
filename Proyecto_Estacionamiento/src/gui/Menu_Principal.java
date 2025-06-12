@@ -1,31 +1,19 @@
 package gui;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Arreglos.vehicleArray;
-
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
+
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JTree;
-import java.awt.FlowLayout;
-import javax.swing.JSlider;
+
 import java.awt.SystemColor;
 
 public class Menu_Principal extends JFrame implements ActionListener {
@@ -40,6 +28,8 @@ public class Menu_Principal extends JFrame implements ActionListener {
 	private Registro regis;
 	private lista lis;
 	private Salida salida;
+	private Estacionamiento estacinamiento;
+	private JButton btnNewButton_3;
 
 	/**
 	 * Launch the application.
@@ -66,9 +56,10 @@ public class Menu_Principal extends JFrame implements ActionListener {
 		setBounds(100, 100, 972, 549);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		{
 			panel_1 = new JPanel();
@@ -84,8 +75,8 @@ public class Menu_Principal extends JFrame implements ActionListener {
 				panel_1.add(btnNewButton);
 			}
 			{
-				btnNewButton_1 = new JButton("Reporte");
-				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				btnNewButton_1 = new JButton("Estacionamiento");
+				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 				btnNewButton_1.addActionListener(this);
 				btnNewButton_1.setBounds(0, 271, 204, 71);
 				panel_1.add(btnNewButton_1);
@@ -97,6 +88,13 @@ public class Menu_Principal extends JFrame implements ActionListener {
 				btnNewButton_2.setBounds(0, 189, 204, 71);
 				panel_1.add(btnNewButton_2);
 			}
+			{
+				btnNewButton_3 = new JButton("Estacionamiento_ESTA");
+				btnNewButton_3.addActionListener(this);
+				btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 21));
+				btnNewButton_3.setBounds(0, 353, 204, 71);
+				panel_1.add(btnNewButton_3);
+			}
 			 regis = new Registro();
 		     regis.setBounds(205, 0, 751, 516);
 		        
@@ -106,6 +104,9 @@ public class Menu_Principal extends JFrame implements ActionListener {
 		     salida = new Salida();
 		     salida.setBounds(205, 0, 751, 516);
 		     
+		     estacinamiento = new Estacionamiento();
+		     estacinamiento.setBounds(205, 0, 751, 516);
+		     
 		     nuevoPanel(regis);
 		}
 		
@@ -113,6 +114,9 @@ public class Menu_Principal extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton_3) {
+			do_btnNewButton_3_actionPerformed(e);
+		}
 		if (e.getSource() == btnNewButton_2) {
 			do_btnNewButton_2_actionPerformed(e);
 		}
@@ -147,4 +151,8 @@ public class Menu_Principal extends JFrame implements ActionListener {
         contentPane.revalidate();
         contentPane.repaint();
     }
+	protected void do_btnNewButton_3_actionPerformed(ActionEvent e) {
+		nuevoPanel(estacinamiento);
+		
+	}
 }
