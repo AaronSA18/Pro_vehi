@@ -26,6 +26,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTree;
 import java.awt.FlowLayout;
 import javax.swing.JSlider;
+import java.awt.SystemColor;
 
 public class Menu_Principal extends JFrame implements ActionListener {
 
@@ -62,7 +63,7 @@ public class Menu_Principal extends JFrame implements ActionListener {
 	 */
 	public Menu_Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 664, 355);
+		setBounds(100, 100, 972, 549);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -71,36 +72,39 @@ public class Menu_Principal extends JFrame implements ActionListener {
 		
 		{
 			panel_1 = new JPanel();
-			panel_1.setBackground(new Color(255, 128, 128));
-			panel_1.setBounds(0, 0, 204, 316);
+			panel_1.setBackground(SystemColor.activeCaption);
+			panel_1.setBounds(0, 0, 203, 516);
 			contentPane.add(panel_1);
 			panel_1.setLayout(null);
 			{
 				btnNewButton = new JButton("Registrar");
+				btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				btnNewButton.addActionListener(this);
-				btnNewButton.setBounds(0, 100, 204, 23);
+				btnNewButton.setBounds(0, 107, 204, 71);
 				panel_1.add(btnNewButton);
 			}
 			{
 				btnNewButton_1 = new JButton("Reporte");
+				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				btnNewButton_1.addActionListener(this);
-				btnNewButton_1.setBounds(0, 121, 204, 23);
+				btnNewButton_1.setBounds(0, 271, 204, 71);
 				panel_1.add(btnNewButton_1);
 			}
 			{
 				btnNewButton_2 = new JButton("Salida");
+				btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				btnNewButton_2.addActionListener(this);
-				btnNewButton_2.setBounds(0, 143, 204, 23);
+				btnNewButton_2.setBounds(0, 189, 204, 71);
 				panel_1.add(btnNewButton_2);
 			}
 			 regis = new Registro();
-		     regis.setBounds(204, 0, 444, 316);
+		     regis.setBounds(205, 0, 751, 516);
 		        
 		     lis = new lista(); 
-		     lis.setBounds(204, 0, 473, 373);
+		     lis.setBounds(205, 0, 751, 516);
 		     
 		     salida = new Salida();
-		     salida.setBounds(204, 0, 473, 373);
+		     salida.setBounds(205, 0, 751, 516);
 		     
 		     nuevoPanel(regis);
 		}

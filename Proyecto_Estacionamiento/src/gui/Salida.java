@@ -33,19 +33,21 @@ public class Salida extends JPanel implements ActionListener {
 		setLayout(null);
 		{
 			txtPlaca = new JTextField();
+			txtPlaca.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtPlaca.setColumns(10);
-			txtPlaca.setBounds(144, 26, 96, 20);
+			txtPlaca.setBounds(61, 178, 224, 26);
 			add(txtPlaca);
 		}
 		{
 			btnNewButton = new JButton("Generar comprobante");
+			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			btnNewButton.addActionListener(this);
-			btnNewButton.setBounds(266, 25, 163, 23);
+			btnNewButton.setBounds(61, 310, 224, 33);
 			add(btnNewButton);
 		}
 		{
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(24, 69, 405, 215);
+			scrollPane.setBounds(339, 76, 342, 361);
 			add(scrollPane);
 			{
 				txtS = new JTextArea();
@@ -54,8 +56,8 @@ public class Salida extends JPanel implements ActionListener {
 		}
 		{
 			lblNewLabel_1 = new JLabel("Ingresar Placa : ");
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel_1.setBounds(24, 23, 131, 23);
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblNewLabel_1.setBounds(61, 144, 131, 23);
 			add(lblNewLabel_1);
 		}
 		
@@ -75,6 +77,13 @@ public class Salida extends JPanel implements ActionListener {
 	
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
 		
+		if(Placa().isEmpty()) {
+			JOptionPane.showMessageDialog(this, 
+	                "Campo vacio", 
+	                "Error", 
+	                JOptionPane.ERROR_MESSAGE);
+	            return;
+		}
 		txtS.setText("");
 		vehiculo a = listavehiculo.Search(Placa());		
 		 if(a!=null) {
@@ -86,7 +95,11 @@ public class Salida extends JPanel implements ActionListener {
 			 listavehiculo.Delete(a);
 			
 			 JOptionPane.showMessageDialog(this,"Salida exitosa");
-		 }else {JOptionPane.showMessageDialog(this,"Placa no existe");
+		 }else {JOptionPane.showMessageDialog(
+	                this,
+	                "La placa " + Placa() + " NO  está registrada",
+	                "Placa duplicada",
+	                JOptionPane.WARNING_MESSAGE);
 			 
 		 }
 	}

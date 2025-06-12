@@ -46,7 +46,6 @@ public class vehiculo {
         this.fechaHoraSalida = LocalDateTime.now();
     }
     
-
     public Factura getFac() {
 		return fac;
 	}
@@ -96,9 +95,7 @@ public class vehiculo {
 		return fechaHoraEntrada;
 	}
 
-	public LocalDateTime getFechaHoraSalida() {
-		return fechaHoraSalida;
-	}
+	
 	//
 	public void setFechaHoraEntrada(LocalDateTime fechaHoraEntrada) {
 		this.fechaHoraEntrada = fechaHoraEntrada;

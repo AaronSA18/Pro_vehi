@@ -40,38 +40,40 @@ public class lista extends JPanel implements ActionListener {
 		list.registrarPanelLista(this);
 		
 		{
+			btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			
 			btnBuscar.addActionListener(this);
-			btnBuscar.setBounds(150, 58, 105, 23);
+			btnBuscar.setBounds(568, 448, 131, 23);
 			add(btnBuscar);
 		}
 		{
+			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			
 			btnNewButton.addActionListener(this);
-			btnNewButton.setBounds(20, 58, 105, 23);
+			btnNewButton.setBounds(439, 448, 119, 23);
 			add(btnNewButton);
 		}
 		{
 			
-			scrollPane.setBounds(20, 103, 408, 195);			
-		    scrollPane.setViewportView(txtS);
+			scrollPane.setBounds(44, 103, 655, 318);
 			add(scrollPane);
 			mostrarDatos();						
 		}
 		{
+			txtPlaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			
-			txtPlaca.setBounds(130, 25, 125, 20);
+			txtPlaca.setBounds(181, 52, 220, 20);
 			add(txtPlaca);
 			txtPlaca.setColumns(10);
 		}
 		{
 			
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 22, 131, 23);
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblNewLabel.setBounds(46, 50, 151, 23);
 			add(lblNewLabel);
 		}
-		
-		
+		 vehicleArray.initializeSampleData();
+		 mostrarDatos();
 		
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -97,6 +99,7 @@ public class lista extends JPanel implements ActionListener {
 	
 	public void mostrarDatos() {
         SwingUtilities.invokeLater(() -> {
+            scrollPane.setViewportView(txtS);
             txtS.setText("");
             if (list.Size() > 0) {
                 for (int i = 0; i < list.Size(); i++) {
