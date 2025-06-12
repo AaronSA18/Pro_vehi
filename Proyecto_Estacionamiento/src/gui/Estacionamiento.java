@@ -158,7 +158,7 @@ public class Estacionamiento extends JPanel implements ActionListener {
 		}
 		table.setModel(new DefaultTableModel(datos, columnas));
 	}
-	
+	//dato brinda nulo
 	public void actualizarTablaCompleta() {
 		
 	        SwingUtilities.invokeLater(() -> {
