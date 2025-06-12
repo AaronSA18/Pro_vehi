@@ -75,10 +75,10 @@ public class Menu_Principal extends JFrame implements ActionListener {
 				panel_1.add(btnNewButton);
 			}
 			{
-				btnNewButton_1 = new JButton("Estacionamiento");
+				btnNewButton_1 = new JButton("Reporte");
 				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 				btnNewButton_1.addActionListener(this);
-				btnNewButton_1.setBounds(0, 271, 204, 71);
+				btnNewButton_1.setBounds(0, 353, 204, 71);
 				panel_1.add(btnNewButton_1);
 			}
 			{
@@ -89,10 +89,10 @@ public class Menu_Principal extends JFrame implements ActionListener {
 				panel_1.add(btnNewButton_2);
 			}
 			{
-				btnNewButton_3 = new JButton("Estacionamiento_ESTA");
+				btnNewButton_3 = new JButton("Estacionamiento");
 				btnNewButton_3.addActionListener(this);
 				btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 21));
-				btnNewButton_3.setBounds(0, 353, 204, 71);
+				btnNewButton_3.setBounds(0, 271, 204, 71);
 				panel_1.add(btnNewButton_3);
 			}
 			 regis = new Registro();

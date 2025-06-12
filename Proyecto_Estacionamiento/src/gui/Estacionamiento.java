@@ -72,7 +72,8 @@ public class Estacionamiento extends JPanel implements ActionListener {
 			scrollPane.setBounds(42, 106, 653, 318);
 			add(scrollPane);
 			{
-				table = new JTable();
+				tableModel = new DefaultTableModel(columnas, 0);
+			    table = new JTable(tableModel);			
 				scrollPane.setViewportView(table);
 				Object[][] datos = new Object[tablaVehi.Size()][8];
 
@@ -87,7 +88,7 @@ public class Estacionamiento extends JPanel implements ActionListener {
 					datos[i][6] = p.getFechaHoraEntrada();
 					datos[i][7] = p.VerificarSalida();
 				}
-				table.setModel(new DefaultTableModel(datos, columnas));
+				
 			}
 			
 		}
@@ -115,23 +116,19 @@ public class Estacionamiento extends JPanel implements ActionListener {
 				return;
 			}
 			vehiculo p=tablaVehi.Search(Placa());
-	        if (p!=null) {
-	        	JOptionPane.showMessageDialog(this, "Producto encontrado");
-	        	table.setModel(new DefaultTableModel());
-	        	Object[][] datos = new Object[tablaVehi.Size()][8];
-
-				for (int i = 0; i < tablaVehi.Size(); i++) {
-					
-					datos[0][0] = p.getPlacVehiculo();
-					datos[0][1] = p.getMarVehiculo();
-					datos[0][2] = p.getTipVehiculo();
-					datos[0][3] = p.getCli().getNomCliente();
-					datos[0][4] = p.getCli().getApeCliente();
-					datos[0][5] = p.getCli().getTelfCliente();
-					datos[0][6] = p.getFechaHoraEntrada();
-					datos[0][7] = p.VerificarSalida();
-	        	table.setModel(new DefaultTableModel(datos, columnas));
-				}
+			if (p != null) {
+	            JOptionPane.showMessageDialog(this, "Vehículo encontrado");
+	            tableModel.setRowCount(0); // Limpiar la tabla
+	            tableModel.addRow(new Object[]{
+	                p.getPlacVehiculo(),
+	                p.getMarVehiculo(),
+	                p.getTipVehiculo(),
+	                p.getCli().getNomCliente(),
+	                p.getCli().getApeCliente(),
+	                p.getCli().getTelfCliente(),
+	                p.getFechaHoraEntrada(),
+	                p.VerificarSalida()
+	            });
 			}
 	        else {
 	        	JOptionPane.showMessageDialog(this, "La placa no existe");
@@ -141,42 +138,40 @@ public class Estacionamiento extends JPanel implements ActionListener {
 		}
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		Object[][] datos = new Object[tablaVehi.Size()][8];
-
-		for (int i = 0; i < tablaVehi.Size(); i++) {
-			vehiculo p = tablaVehi.Get(i);
-			datos[i][0] = p.getPlacVehiculo();
-			datos[i][1] = p.getMarVehiculo();
-			datos[i][2] = p.getTipVehiculo();
-			datos[i][3] = p.getCli().getNomCliente();
-			datos[i][4] = p.getCli().getApeCliente();
-			datos[i][5] = p.getCli().getTelfCliente();
-			datos[i][6] = p.getFechaHoraEntrada();
-			datos[i][7] = p.VerificarSalida();
-		}
-		table.setModel(new DefaultTableModel(datos, columnas));
-	}
-	//dato brinda nulo
-	public void actualizarTablaCompleta() {
-		
-	        SwingUtilities.invokeLater(() -> {
-	            tableModel.setRowCount(0);
-	            for (int i = 0; i < tablaVehi.Size(); i++) {
-	                vehiculo p = tablaVehi.Get(i);
-	                tableModel.addRow(new Object[]{
-	                    p.getPlacVehiculo(),
-	                    p.getMarVehiculo(),
-	                    p.getTipVehiculo(),
-	                    p.getCli().getNomCliente(),
-	                    p.getCli().getApeCliente(),
-	                    p.getCli().getTelfCliente(),
-	                    p.getFechaHoraEntrada(),
-	                    p.VerificarSalida()
-	                });
-	            }
+		tableModel.setRowCount(0); // Limpiar la tabla
+	    
+	    for (int i = 0; i < tablaVehi.Size(); i++) {
+	        vehiculo p = tablaVehi.Get(i);
+	        tableModel.addRow(new Object[]{
+	            p.getPlacVehiculo(),
+	            p.getMarVehiculo(),
+	            p.getTipVehiculo(),
+	            p.getCli().getNomCliente(),
+	            p.getCli().getApeCliente(),
+	            p.getCli().getTelfCliente(),
+	            p.getFechaHoraEntrada(),
+	            p.VerificarSalida()
 	        });
 	    }
+	}
+	
+	public void actualizarTablaCompleta() {
+	    SwingUtilities.invokeLater(() -> {
+	        tableModel.setRowCount(0);
+	        for (int i = 0; i < tablaVehi.Size(); i++) {
+	            vehiculo p = tablaVehi.Get(i);
+	            tableModel.addRow(new Object[]{
+	                p.getPlacVehiculo(),
+	                p.getMarVehiculo(),
+	                p.getTipVehiculo(),
+	                p.getCli().getNomCliente(),
+	                p.getCli().getApeCliente(),
+	                p.getCli().getTelfCliente(),
+	                p.getFechaHoraEntrada(),
+	                p.VerificarSalida()
+	            });
+	        }
+	    });
+	}
 	
 }
