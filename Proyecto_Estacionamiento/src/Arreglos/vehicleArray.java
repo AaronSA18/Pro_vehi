@@ -107,13 +107,13 @@ public class vehicleArray {
     private void notificarActualizacion() {
         if (panelLista != null) {
             javax.swing.SwingUtilities.invokeLater(() -> {
-                panelLista.mostrarDatos();
+                panelLista.actualizarTablaCompleta();
             });
            
         }
     }
     
-    //se agregro
+    //Actualizacion Panel Estacionamiento
     public void registrarPanel(Estacionamiento panel) {
         this.panelEsta = panel;
     }

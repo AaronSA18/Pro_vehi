@@ -32,7 +32,7 @@ public class Estacionamiento extends JPanel implements ActionListener {
 	private String[] columnas = { "Placa", "Marca", "Tipo", "Cliente", "Apellido","Telefono","Entrada","Salida"};
 	private JScrollPane scrollPane;
 	private JTable table;
-	 private DefaultTableModel tableModel;
+	private DefaultTableModel tableModel;
 
 	/**
 	 * Create the panel.
@@ -40,6 +40,7 @@ public class Estacionamiento extends JPanel implements ActionListener {
 	public Estacionamiento() {
 		setLayout(null);
 		tablaVehi.registrarPanel(this);
+		actualizarTablaCompleta();
 		{
 			lblNewLabel = new JLabel("Ingresar Placa : ");
 			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -74,21 +75,7 @@ public class Estacionamiento extends JPanel implements ActionListener {
 			{
 				tableModel = new DefaultTableModel(columnas, 0);
 			    table = new JTable(tableModel);			
-				scrollPane.setViewportView(table);
-				Object[][] datos = new Object[tablaVehi.Size()][8];
-
-				for (int i = 0; i < tablaVehi.Size(); i++) {
-					vehiculo p = tablaVehi.Get(i);
-					datos[i][0] = p.getPlacVehiculo();
-					datos[i][1] = p.getMarVehiculo();
-					datos[i][2] = p.getTipVehiculo();
-					datos[i][3] = p.getCli().getNomCliente();
-					datos[i][4] = p.getCli().getApeCliente();
-					datos[i][5] = p.getCli().getTelfCliente();
-					datos[i][6] = p.getFechaHoraEntrada();
-					datos[i][7] = p.VerificarSalida();
-				}
-				
+				scrollPane.setViewportView(table);								
 			}
 			
 		}

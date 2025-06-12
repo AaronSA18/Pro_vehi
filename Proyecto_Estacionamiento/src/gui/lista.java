@@ -9,12 +9,14 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 import Arreglos.vehicleArray;
 import clases.vehiculo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class lista extends JPanel implements ActionListener {
 
@@ -29,7 +31,11 @@ public class lista extends JPanel implements ActionListener {
 	private final JLabel lblNewLabel = new JLabel("Ingresar Placa : ");
 	
 	private final JTextField txtPlaca = new JTextField();
-	private vehicleArray list = vehicleArray.getInstancia();
+	private vehicleArray tablaVehi = vehicleArray.getInstancia();
+	
+	private String[] columnas = { "Placa", "Marca", "Tipo", "Cliente", "Apellido","Telefono","Entrada","Salida"};
+	private final JTable table;
+	private DefaultTableModel tableModel;
 	
 
 	/**
@@ -37,7 +43,8 @@ public class lista extends JPanel implements ActionListener {
 	 */
 	public lista() {
 		setLayout(null);
-		list.registrarPanelLista(this);
+		tablaVehi.registrarPanelLista(this);
+		actualizarTablaCompleta();
 		
 		{
 			btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -57,7 +64,13 @@ public class lista extends JPanel implements ActionListener {
 			
 			scrollPane.setBounds(44, 103, 655, 318);
 			add(scrollPane);
-			//mostrarDatos();						
+			tableModel = new DefaultTableModel(columnas, 0);
+		    table = new JTable(tableModel);			
+			scrollPane.setViewportView(table);
+									
+		}
+		{
+			scrollPane.setViewportView(table);
 		}
 		{
 			txtPlaca.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -93,57 +106,57 @@ public class lista extends JPanel implements ActionListener {
 	}
 	
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) { //Listar todo
-		mostrarDatos();
+		actualizarTablaCompleta();
 	}
 	
 	
-	public void mostrarDatos() {
-        SwingUtilities.invokeLater(() -> {
-            scrollPane.setViewportView(txtS);
-            txtS.setText("");
-            if (list.Size() > 0) {
-                for (int i = 0; i < list.Size(); i++) {
-                    txtS.append(list.Get(i).Entrada() + "\n");
-                }
-            } else {
-                txtS.setText("No hay vehículos registrados");
-            }
-        });
-    }
+	public void actualizarTablaCompleta() {
+	    SwingUtilities.invokeLater(() -> {
+	        tableModel.setRowCount(0);
+	        for (int i = 0; i < tablaVehi.Size(); i++) {
+	            vehiculo p = tablaVehi.Get(i);
+	            tableModel.addRow(new Object[]{
+	                p.getPlacVehiculo(),
+	                p.getMarVehiculo(),
+	                p.getTipVehiculo(),
+	                p.getCli().getNomCliente(),
+	                p.getCli().getApeCliente(),
+	                p.getCli().getTelfCliente(),
+	                p.getFechaHoraEntrada(),
+	                p.VerificarSalida()
+	            });
+	        }
+	    });
+	}
 	
 	
 	
 	protected void do_btnBuscar_actionPerformed(ActionEvent e) { //Buscar
-		txtS.setText("");
-		if(Placa()==null) {
-			JOptionPane.showMessageDialog(
-					 this,
-	                   "Ingrese placa",
-	                    "DATO VACIO",
-	                    JOptionPane.INFORMATION_MESSAGE);
-			return;
+		try {
+			if(Placa().isBlank()) {
+				JOptionPane.showMessageDialog(this, "El campo está vacío.");
+				return;
+			}
+			vehiculo p=tablaVehi.Search(Placa());
+			if (p != null) {
+	            JOptionPane.showMessageDialog(this, "Vehículo encontrado");
+	            tableModel.setRowCount(0); // Limpiar la tabla
+	            tableModel.addRow(new Object[]{
+	                p.getPlacVehiculo(),
+	                p.getMarVehiculo(),
+	                p.getTipVehiculo(),
+	                p.getCli().getNomCliente(),
+	                p.getCli().getApeCliente(),
+	                p.getCli().getTelfCliente(),
+	                p.getFechaHoraEntrada(),
+	                p.VerificarSalida()
+	            });
+			}
+	        else {
+	        	JOptionPane.showMessageDialog(this, "La placa no existe");
+			}
+		}catch (Exception e2) {
+			JOptionPane.showMessageDialog(this,"Error al buscar");
 		}
-		vehiculo a = list.Search(Placa());
-		
-		 if(a!=null) {
-			 JOptionPane.showMessageDialog(
-					 this,
-	                   a.DatoVehiculo(),
-	                    "Registro exitoso",
-	                    JOptionPane.INFORMATION_MESSAGE);
-		 }else {
-			 JOptionPane.showMessageDialog(
-					 this,
-	                   "Placa no existe",
-	                    "Registro ERROR",
-	                    JOptionPane.INFORMATION_MESSAGE);
-			 return;
-			 
-		 }
-		 for (int i = 0; i < list.Size(); i++) {			
-				txtS.append(list.Get(i).Entrada());			
-			}	
-		
-	
 	}
 }
