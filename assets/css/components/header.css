@@ -163,15 +163,6 @@ nav a.active::after {
     animation: popBadge 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* ========== Nav Text ========== */
-.nav-icon {
-    display: none;
-}
-
-.nav-text {
-    display: inline;
-}
-
 /* ========== Animations ========== */
 @keyframes bounceIn {
     0% {
@@ -204,7 +195,36 @@ nav a.active::after {
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bgZoom {
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes heroFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
     }
     100% {
         opacity: 1;
@@ -223,24 +243,9 @@ nav a.active::after {
     }
 }
 
-@keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 /* ========== Hero Section ========== */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url('../../images/hero-bg.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    position: relative;
     color: var(--color-white);
     text-align: center;
     padding: var(--spacing-5xl) var(--spacing-xl);
@@ -248,35 +253,84 @@ nav a.active::after {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    animation: bgZoom 10s ease-out forwards;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1;
 }
 
 .hero-content {
     width: 100%;
-    max-width: 600px;
-    animation: fadeInUp 0.8s ease-out;
+    max-width: 950px;
+    position: relative;
+    z-index: 2;
+    animation: heroFadeIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .hero-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-xl);
-    padding: var(--spacing-3xl) var(--spacing-2xl);
+    padding: 3rem 4rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+.hero-subtitle {
+    display: block;
+    color: #FFC107;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    animation: fadeInDown 0.8s ease-out 0.3s both;
+}
+
 .hero h1 {
-    font-size: var(--font-size-h1);
-    margin-bottom: var(--spacing-md);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    letter-spacing: -0.5px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: var(--spacing-2xl);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: -1px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hero-highlight {
+    color: #FFC107;
+    display: block;
+    font-weight: 800;
 }
 
 .hero p {
     font-size: var(--font-size-h4);
-    margin-bottom: var(--spacing-2xl);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: var(--spacing-3xl);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     opacity: 0.95;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-buttons {
@@ -309,7 +363,7 @@ nav a.active::after {
 
 .cta-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
 }
 
 .cta-secondary {
